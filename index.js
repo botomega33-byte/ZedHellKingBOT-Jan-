@@ -41,7 +41,7 @@ function verifyLocalUserSecurely() {
                 targetPort = 3050; 
             } else if (user === "Zed" && pass === "2846500") {
                 targetPort = 3060; 
-            } else if (user === "Souhil" && pass === "66448821") {
+            } else if (user === "Dunya" && pass === "9988552") {
                 targetPort = 3070; 
             }
 
