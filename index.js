@@ -39,9 +39,9 @@ function verifyLocalUserSecurely() {
             // Route matching identities explicitly directly to separated ports matrix
             if (user === "Shen" && pass === "8264500") {
                 targetPort = 3050; 
-            } else if (user === "Zed" && pass === "2846500") {
+            } else if (user === "YOULYUS2" && pass === "789456") {
                 targetPort = 3060; 
-            } else if (user === "Dunya" && pass === "9988552") {
+            } else if (user === "YOULYUS" && pass === "9988552") {
                 targetPort = 3070; 
             }
 
