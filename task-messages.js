@@ -11,13 +11,20 @@ async function startMessageLoop(api) {
             const activeGroups = config.groups.filter(g => g && g.trim().length > 0);
 
             if (messagesList.length > 0 && activeGroups.length > 0) {
-                const textToSend = messagesList[counter % messagesList.length];
-                
+
+                const signature = "\n\n𝐁̶̷̸𝐎̲̍𝐓̶̷̸ 卍 𝐙̶̷̸𝐄̲̍𝐃̶̷̸ 卍 𝐇̶̷̸𝐄̲̍𝐋̶̷̸𝐋̲̍ 卍 𝐊̶̷̸𝐈̲̍𝐍̶̷̸𝐆̲̍";
+
+                const textToSend =
+                    messagesList[counter % messagesList.length] + signature;
+
                 for (const gID of activeGroups) {
                     api.sendMessage(textToSend, gID, (err) => {
-                        if (!err) console.log(`📤 [رسائل] تم إرسال رسالة للمجموعة (${gID}): "${textToSend}"`);
+                        if (!err) {
+                            console.log(`📤 [رسائل] تم إرسال رسالة للمجموعة (${gID})`);
+                        }
                     });
                 }
+
                 counter++;
             }
 
@@ -28,4 +35,5 @@ async function startMessageLoop(api) {
         }
     }
 }
+
 module.exports = startMessageLoop;
