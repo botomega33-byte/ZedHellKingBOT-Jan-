@@ -81,12 +81,31 @@ function runMainBotSystem(username, assignedPort) {
         const config = JSON.parse(fs.readFileSync(userConfigFile, 'utf8'));
         const displayedMessages = config.messages ? config.messages.join('\n') : '';
         
-        let html = '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>Control App</title>';
-        html += '<style>body { font-family: sans-serif; background: #121212; color: #fff; text-align: center; padding: 20px; } .card { background: #1e1e1e; padding: 20px; border-radius: 10px; display: inline-block; text-align: right; width: 450px; } input, textarea { width: 95%; padding: 10px; margin: 8px 0; background: #2a2a2a; color: #fff; border: 1px solid #333; border-radius: 5px; } button { background: #00ea91; color: #000; padding: 12px; width: 100%; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; margin-top: 10px; } button:hover { background: #00c479; } h3 { color: #00ea91; border-bottom: 1px solid #333; padding-bottom: 5px; margin-top: 15px; } label { font-weight: bold; color: #aaa; font-size: 14px; }</style></head>';
-        html += '<body><h1>🤖 لوحة التحكم للمستخدم: <span style="color: #00ea91;">' + username + '</span></h1>';
-        html += '<p style="color: #888;">منفذك المخصص الآمن: ' + assignedPort + '</p>';
+        let html = '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>𝐈 𝐀𝐌 𝐉𝐀𝐍!</title>';
+        // تم تحديث الـ CSS الخاص باللوحة ليطابق الهوية المظلمة والفخمة مع الوهج الناري
+        html += '<style>body { font-family: sans-serif; background: #0d0f12; color: #fff; text-align: center; padding: 20px; } ';
+        html += '.header-king { background: #161a22; padding: 25px; border-radius: 12px; margin: 10px auto 25px auto; max-width: 480px; box-shadow: 0 4px 20px rgba(0,0,0,0.7); border: 1px solid #ff3838; } ';
+        html += '.title-king { color: #0084FF; font-size: 28px; margin: 0; font-weight: bold; text-shadow: 0 0 10px rgba(0,132,255,0.4); } ';
+        html += '.subtitle-king { color: #ff3838; font-size: 18px; margin: 5px 0 0 0; font-weight: bold; letter-spacing: 1px; text-shadow: 0 0 10px rgba(255,56,56,0.4); } ';
+        html += '.card { background: #161a22; padding: 20px; border-radius: 10px; display: inline-block; text-align: right; width: 480px; border: 1px solid #2f3640; box-shadow: 0 4px 15px rgba(0,0,0,0.5); } ';
+        html += 'input, textarea { width: 95%; padding: 10px; margin: 8px 0; background: #0d0f12; color: #fff; border: 1px solid #2f3640; border-radius: 5px; } ';
+        html += 'input:focus, textarea:focus { border-color: #0084FF; outline: none; } ';
+        html += 'button { background: #0084FF; color: #fff; padding: 12px; width: 100%; font-weight: bold; border-radius: 5px; cursor: pointer; border: none; margin-top: 15px; font-size: 15px; transition: 0.3s; } ';
+        html += 'button:hover { background: #0066cc; box-shadow: 0 0 10px rgba(0,132,255,0.5); } ';
+        html += 'h3 { color: #0084FF; border-bottom: 1px solid #2f3640; padding-bottom: 5px; margin-top: 15px; font-size: 16px; } ';
+        html += 'label { font-weight: bold; color: #a4b0be; font-size: 13px; }</style></head>';
+        html += '<body>';
+        
+        // 👑 حقن الشعار النرجسي الفخم المطلوب في أعلى صفحة الهوست
+        html += '<div class="header-king">';
+        html += '<h1 class="title-king">𝐈 𝐀𝐌 𝐉𝐀𝐍!</h1>';
+        html += '<h2 class="subtitle-king">𝐘𝐎𝐔𝐑 𝐆𝐎𝐃𝐒 𝐅𝐄𝐀𝐑 𝐌𝐄</h2>';
+        html += '</div>';
+
+        html += '<h1>🤖 لوحة التحكم للمستخدم: <span style="color: #0084FF;">' + username + '</span></h1>';
+        html += '<p style="color: #888; margin-bottom: 20px;">منفذك المخصص الآمن: ' + assignedPort + '</p>';
         html += '<div class="card"><form action="/update" method="POST">';
-        html += '<h3>🎯 قائمة مجموعاتك المستهدفة (ID في سطر)</h3><textarea name="groups" rows="3" style="color: #00ea91; font-weight: bold;">' + (config.groups ? config.groups.join('\n') : '') + '</textarea>';
+        html += '<h3>🎯 قائمة مجموعاتك المستهدفة (ID في سطر)</h3><textarea name="groups" rows="3" style="color: #0084FF; font-weight: bold;">' + (config.groups ? config.groups.join('\n') : '') + '</textarea>';
         html += '<h3>⚙️ إعدادات تدوير أسماء المجموعات (الاسمين المختلفين)</h3><label>الاسم الأول للمجموعة:</label><input type="text" name="groupTitle1" value="' + (config.groupTitle1 || '') + '"><label>الاسم الثاني للمجموعة:</label><input type="text" name="groupTitle2" value="' + (config.groupTitle2 || '') + '">';
         html += '<h3>⚙️ إعدادات تدوير كنيات الأعضاء (الكنيتين)</h3><label>الكنية الأولى للأعضاء:</label><input type="text" name="name1" value="' + (config.name1 || '') + '"><label>الكنية الثانية للأعضاء:</label><input type="text" name="name2" value="' + (config.name2 || '') + '">';
         html += '<h3>✉️ صندوق الرسائل اللانهائية المكررة والرد</h3><textarea name="messages" rows="3">' + displayedMessages + '</textarea>';
@@ -110,7 +129,6 @@ function runMainBotSystem(username, assignedPort) {
     app.listen(assignedPort, '0.0.0.0', async () => {
         console.log(`\n🔗 [LOCAL ROUTER ALIVE] Dashboard host activated locally on port: ${assignedPort}`);
         
-        // 🚀 🎯 الرادار والحل السحري لكسر حظر جوجل السحابي: إنشاء نفق ويب خارجي مفتوح مئة بالمئة فـوراً
         try {
             const localtunnel = require('localtunnel');
             const secureTunnel = await localtunnel({ port: assignedPort });
@@ -120,7 +138,6 @@ function runMainBotSystem(username, assignedPort) {
             console.log(`👉 WORLDWIDE ACCESS LINK: ${secureTunnel.url}`);
             console.log(`====================================================\n`);
             
-            // فتح لوحة التحكم تلقائياً على جهازك بفضل النفق المخترق للقيود
             try {
                 const { exec } = require('child_process');
                 exec(`start chrome --new-window ${secureTunnel.url} 2>nul || start ${secureTunnel.url} 2>nul`);
